@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>設定</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-5">設定</h1>
+    <nav class="mt-3 mb-3">
+      <button id="back-button" class="btn btn-secondary">戻る</button>
+    </nav>
+    <form id="settings-form">
+      <div class="form-group">
+        <label for="setting-name">設定名:</label>
+        <input type="text" id="setting-name" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="default-basic-charge">基本料金:</label>
+        <input type="number" id="default-basic-charge" class="form-control" value="0" step="any">
+      </div>
+
+      <div class="form-group">
+        <label for="default-unit-price">重量単価:</label>
+        <input type="number" id="default-unit-price" class="form-control" value="0" step="any">
+      </div>
+
+      <div class="form-group">
+        <label for="default-adjustment-price">調整単価:</label>
+        <input type="number" id="default-adjustment-price" class="form-control" value="0" step="any">
+      </div>
+
+      <button type="button" id="apply-settings-button" class="btn btn-primary">設定を適用</button>
+    </form>
+  </div>
+
+  <script src="renderer.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+      .then((registration) => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch((error) => {
+        console.error('Service Worker registration failed:', error);
+      });
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "name": "ガス料金計算アプリ",
+    "short_name": "GasCalc",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "ガス料金を計算するアプリです。",
+    "icons": [
+      {
+        "src": "assets/icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ]
+  }
+  
