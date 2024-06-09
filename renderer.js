@@ -104,8 +104,10 @@ function calculate() {
   }
 
   const usageAmount = currentReading - previousReading;
-  const unitCharge = unitPrice * usageAmount;
-  const adjustmentCharge = adjustmentPrice * usageAmount;
+  //重量料金小数点切り捨て
+  const unitCharge = Math.trunc(unitPrice * usageAmount);
+  //調整額小数点切り捨て
+  const adjustmentCharge = Math.trunc(adjustmentPrice * usageAmount);
 
   let totalBasicCharge = 0;
   if (startDate.getMonth() !== endDate.getMonth() || startDate.getFullYear() !== endDate.getFullYear()) {
