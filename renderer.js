@@ -103,23 +103,23 @@ function calculate() {
     return;
   }
 
-  const usageAmount = currentReading - previousReading;
-  //重量料金小数点切り捨て
-  const unitCharge = Math.trunc(unitPrice * usageAmount);
-  //調整額小数点切り捨て
-  const adjustmentCharge = Math.trunc(adjustmentPrice * usageAmount);
+  const usageAmount = Big(currentReading).minus(previousReading);
+  // 重量料金を小数点以下2桁まで計算
+  const unitCharge = Big(unitPrice).times(usageAmount).round(2);
+  // 調整額を小数点以下2桁まで計算
+  const adjustmentCharge = Big(adjustmentPrice).times(usageAmount).round(2);
 
-  let totalBasicCharge = 0;
+  let totalBasicCharge = Big(0);
   if (startDate.getMonth() !== endDate.getMonth() || startDate.getFullYear() !== endDate.getFullYear()) {
-    totalBasicCharge = basicCharge;
+    totalBasicCharge = Big(basicCharge);
   }
 
-  const totalCharge = 1.1 * (totalBasicCharge + unitCharge + adjustmentCharge);
+  const totalCharge = Big(1.1).times(totalBasicCharge.plus(unitCharge).plus(adjustmentCharge)).round(2);
 
-  console.log("Usage Amount:", usageAmount);
-  console.log("Unit Charge:", unitCharge);
-  console.log("Adjustment Charge:", adjustmentCharge);
-  console.log("Total Charge:", totalCharge);
+  console.log("Usage Amount:", usageAmount.toString());
+  console.log("Unit Charge:", unitCharge.toString());
+  console.log("Adjustment Charge:", adjustmentCharge.toString());
+  console.log("Total Charge:", totalCharge.toString());
 
   document.getElementById('usage-amount').innerText = usageAmount.toFixed(2);
   document.getElementById('unit-charge').innerText = unitCharge.toFixed(2);
